@@ -1,27 +1,45 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+
 import '../../products/domain/product.dart';
 
-class Cart {
-  const Cart([this.items = const {}]);
+part 'cart.g.dart';
+part 'cart.freezed.dart';
 
-  /// All the items in the shopping cart, where:
-  /// - key: product ID
-  /// - value: quantity
-  final Map<ProductID, int> items;
+@freezed
+class Cart with _$Cart {
+  factory Cart({
+    required Map<ProductID, int> items,
+  }) = _Cart;
+
+  factory Cart.fromJson(Map<String, dynamic> json) => _$CartFromJson(json);
 }
 
 /// Helper extension used to update the items in the shopping cart.
 extension MutableCart on Cart {
-  Cart addItem({required ProductID productId, required int quantity}) {
+  Cart addItem(CartItem item) {
     final copy = Map<ProductID, int>.from(items);
     // * update item quantity. Read this for more details:
     // * https://codewithandrea.com/tips/dart-map-update-method/
-    copy[productId] = quantity + (copy[productId] ?? 0);
-    return Cart(copy);
+    copy[item.productID] = item.quantity + (copy[item.productID] ?? 0);
+    return Cart(items: copy);
   }
 
   Cart removeItemById(ProductID productId) {
     final copy = Map<ProductID, int>.from(items);
     copy.remove(productId);
-    return Cart(copy);
+    return Cart(items: copy);
   }
+
+  Cart setItem(CartItem item) {
+    final copy = Map<ProductID, int>.from(items);
+    copy[item.productID] = item.quantity;
+    return Cart(items: copy);
+  }
+}
+
+class CartItem {
+  final ProductID productID;
+  final int quantity;
+
+  CartItem({required this.productID, required this.quantity});
 }

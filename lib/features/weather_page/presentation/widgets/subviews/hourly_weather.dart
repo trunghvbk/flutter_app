@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/features/weather_page/application/hourly_weather_controller.dart';
 import 'package:flutter_app/features/weather_page/domain/weather/weather_data.dart';
-import 'package:flutter_app/features/weather_page/presentation/subviews/weather_icon_image.dart';
+import 'package:flutter_app/features/weather_page/presentation/controllers/hourly_weather_controller.dart';
+import 'package:flutter_app/features/weather_page/presentation/widgets/subviews/weather_icon_image.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 

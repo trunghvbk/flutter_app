@@ -1,11 +1,9 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter_app/features/weather_page/data/api/api.dart';
-import 'package:flutter_app/features/weather_page/data/api/api_keys.dart';
 import 'package:flutter_app/features/weather_page/data/repository/api_exception.dart';
 import 'package:flutter_app/features/weather_page/domain/forecast/forecast.dart';
 import 'package:flutter_app/features/weather_page/domain/weather/weather.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
 
 /// Weather Repository using the http client. Calls API methods and parses responses.
@@ -46,18 +44,3 @@ class HttpWeatherRepository {
     }
   }
 }
-
-/// Providers used by rest of the app
-final weatherRepositoryProvider = Provider<HttpWeatherRepository>((ref) {
-  /// Use the API key passed via --dart-define,
-  /// or fallback to the one defined in api_keys.dart
-  // set key to const
-  const apiKey = String.fromEnvironment(
-    APIKeys.openWeatherAPIKey,
-    defaultValue: APIKeys.openWeatherAPIKey,
-  );
-  return HttpWeatherRepository(
-    api: OpenWeatherMapAPI(apiKey),
-    client: http.Client(),
-  );
-});
