@@ -1,4 +1,5 @@
 import 'package:flutter_app/features/auth/data/repository/auth_repository.dart';
+import 'package:flutter_app/features/auth/domain/app_user.dart';
 import 'package:flutter_app/features/cart/data/repository/local_cart_repository.dart';
 import 'package:flutter_app/features/cart/data/repository/remote_cart_repository.dart';
 import 'package:flutter_app/features/weather_page/data/api/api.dart';
@@ -8,9 +9,15 @@ import 'package:http/http.dart' as http;
 
 import '../features/weather_page/data/api/api_keys.dart';
 
-final authRepositoryProvider = Provider<AuthRepository>((ref) {
-  // This should be overridden in main file
-  throw UnimplementedError();
+final authRepositoryProvider = Provider<FakeAuthRepository>((ref) {
+  final auth = FakeAuthRepository();
+  ref.onDispose(() => auth.dispose());
+  return auth;
+});
+
+final authStateChangesProvider = StreamProvider.autoDispose<AppUser?>((ref) {
+  final authRepository = ref.watch(authRepositoryProvider);
+  return authRepository.authStateChanges();
 });
 
 final localCartRepositoryProvider = Provider<LocalCartRepository>((ref) {

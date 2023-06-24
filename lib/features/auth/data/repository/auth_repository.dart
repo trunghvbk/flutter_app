@@ -1,11 +1,22 @@
 import 'package:flutter_app/features/auth/domain/app_user.dart';
+import 'package:flutter_app/utils/in_memory_store.dart';
 
-abstract class AuthRepository {
-  /// returns null if the user is not signed in
-  AppUser? get currentUser;
+class FakeAuthRepository {
+  final _authState = InMemoryStore<AppUser?>(null);
 
-  /// useful to watch auth state changes in realtime
-  Stream<AppUser?> authStateChanges();
+  Stream<AppUser?> authStateChanges() => _authState.stream;
+  AppUser? get currentUser => _authState.value;
 
-  // other sign in methods
+  Future<void> signInAnonymously() async {
+    await Future.delayed(const Duration(seconds: 3));
+    _authState.value = AppUser(
+      uid: '123', // TODO: make it unique
+    );
+  }
+
+  Future<void> signOut() async {
+    _authState.value = null;
+  }
+
+  void dispose() => _authState.close();
 }
