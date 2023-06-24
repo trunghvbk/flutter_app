@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/features/auth/presentation/auth_page.dart';
 import 'package:flutter_app/features/weather_page/presentation/widgets/weather_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -36,7 +37,8 @@ class MyApp extends StatelessWidget {
           caption: const TextStyle(color: Colors.white70, fontSize: 13),
         ),
       ),
-      home: const WeatherPage(city: 'London'),
+      // home: const WeatherPage(city: 'London'),
+      home: const AuthPage(),
     );
   }
 }
