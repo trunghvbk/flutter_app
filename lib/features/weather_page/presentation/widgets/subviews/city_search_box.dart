@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/constants/app_colors.dart';
+import 'package:flutter_app/features/weather_page/presentation/widgets/weather_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-final cityProvider = StateProvider<String>((ref) {
-  return 'London';
-});
 
 class CitySearchBox extends ConsumerStatefulWidget {
   const CitySearchBox({Key? key}) : super(key: key);
@@ -54,7 +51,7 @@ class _CitySearchRowState extends ConsumerState<CitySearchBox> {
                   ),
                 ),
                 onSubmitted: (value) =>
-                    ref.read(cityProvider.state).state = value,
+                    ref.read(cityProvider.notifier).state = value,
               ),
             ),
           ),
@@ -77,7 +74,7 @@ class _CitySearchRowState extends ConsumerState<CitySearchBox> {
             ),
             onTap: () {
               FocusScope.of(context).unfocus();
-              ref.read(cityProvider.state).state = _searchController.text;
+              ref.read(cityProvider.notifier).state = _searchController.text;
             },
           )
         ],
