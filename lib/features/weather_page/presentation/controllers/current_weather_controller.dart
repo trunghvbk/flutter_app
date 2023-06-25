@@ -1,6 +1,6 @@
 import 'package:flutter_app/features/weather_page/data/repository/weather_repository.dart';
 import 'package:flutter_app/features/weather_page/domain/weather/weather_data.dart';
-import 'package:flutter_app/features/weather_page/presentation/widgets/subviews/city_search_box.dart';
+import 'package:flutter_app/features/weather_page/presentation/widgets/weather_page.dart';
 import 'package:flutter_app/providers/repository_providers.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

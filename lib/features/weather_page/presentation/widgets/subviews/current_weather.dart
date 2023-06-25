@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/features/weather_page/domain/weather/weather_data.dart';
 import 'package:flutter_app/features/weather_page/presentation/controllers/current_weather_controller.dart';
-import 'package:flutter_app/features/weather_page/presentation/widgets/subviews/city_search_box.dart';
 import 'package:flutter_app/features/weather_page/presentation/widgets/subviews/weather_icon_image.dart';
+import 'package:flutter_app/features/weather_page/presentation/widgets/weather_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class CurrentWeather extends ConsumerWidget {
@@ -14,7 +14,7 @@ class CurrentWeather extends ConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Text(city, style: Theme.of(context).textTheme.headline4),
+        Text(city, style: Theme.of(context).textTheme.headlineMedium),
         weatherDataValue.when(
           data: (weatherData) => CurrentWeatherContents(data: weatherData),
           loading: () => const Center(child: CircularProgressIndicator()),
