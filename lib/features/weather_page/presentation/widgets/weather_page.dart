@@ -7,11 +7,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final cityProvider = StateProvider((ref) => 'Hanoi');
 
-class WeatherPage extends ConsumerWidget {
+class WeatherPage extends StatelessWidget {
   const WeatherPage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         width: double.infinity,
