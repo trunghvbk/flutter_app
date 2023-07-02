@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 class MainPage extends StatelessWidget {
@@ -15,10 +14,17 @@ class MainPage extends StatelessWidget {
     return Scaffold(
       body: child,
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.amber,
+        selectedItemColor: Colors.orange.shade800,
+        unselectedItemColor: Colors.orange.shade100,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.category),
+            label: 'Products',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.logo_dev),
@@ -40,11 +46,14 @@ class MainPage extends StatelessWidget {
     if (location.startsWith('/home')) {
       return 0;
     }
-    if (location.startsWith('/weather')) {
+    if (location.startsWith('/product_list')) {
       return 1;
     }
-    if (location.startsWith('/account')) {
+    if (location.startsWith('/weather')) {
       return 2;
+    }
+    if (location.startsWith('/account')) {
+      return 3;
     }
     return 0;
   }
@@ -55,9 +64,12 @@ class MainPage extends StatelessWidget {
         GoRouter.of(context).go('/home');
         break;
       case 1:
-        GoRouter.of(context).go('/weather');
+        GoRouter.of(context).go('/product_list');
         break;
       case 2:
+        GoRouter.of(context).go('/weather');
+        break;
+      case 3:
         GoRouter.of(context).go('/account');
         break;
     }
