@@ -38,7 +38,7 @@ dependencies:
   cached_network_image: ^3.2.3
   rxdart: ^0.27.3
   network: 
-    path: packages/network
+    path: custom_packages/network
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

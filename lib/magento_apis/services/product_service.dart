@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:flutter_app/features/products/domain/product.dart';
 import 'package:flutter_app/magento_apis/request.dart';
 import 'package:flutter_app/magento_apis/models/product.dart';
-import 'package:network/network.dart';
 import 'package:flutter_app/features/products/application/product_service.dart';
+import 'package:network/network.dart';
 
 class MProductService extends ProductService {
   final APIRepository apiRepository;
